@@ -12,7 +12,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+   "type": "module",
+  "engines": {
+    "node": "20.x"
+      },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
