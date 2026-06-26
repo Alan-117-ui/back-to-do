@@ -19,15 +19,18 @@ app.get('/', (req, res) => res.json({ok: true, name: 'Todo API'}));
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
-const {PORT = 4000, MONGODB_URI} = process.env;
+const { PORT = 4000, MONGODB_URI } = process.env;
 
+// 1. Conectamos a MongoDB de forma global
 mongoose.connect(MONGODB_URI)
-    .then(() => {
-
-        app.listen(PORT, () => console.log(`Api corriendo correctamente en el puerto ${PORT}`));
-    })
-
+    .then(() => console.log('Conectado exitosamente a MongoDB'))
     .catch(err => {
-        setError(err.response?.data?.message || `Error de Red/Servidor: ${err.message}`);
-
+        console.error(`Error de conexión a MongoDB: ${err.message}`);
     });
+    // 2. Condición para entorno local (Vercel no usa app.listen)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => console.log(`Api corriendo localmente en el puerto ${PORT}`));
+}
+
+// 3. Exportación requerida por Vercel para manejar las peticiones
+export default app;
