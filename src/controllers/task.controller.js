@@ -1,5 +1,5 @@
 // controllers/task.controller.js
-import Task from "../models/Task.js";
+import Task from "../models/task.js";
 
 const allowed = ["Pendiente", "En Progreso", "Completada"]; // <-- usa este nombre en todos lados
 
