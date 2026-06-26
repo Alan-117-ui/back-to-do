@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import authRoutes from "./routes/auth.routes.js";
-import taskRoutes from "./routes/task.routes.js";
+import authRoutes from './routers/auth.routes.js';
+import taskRoutes from './routers/task.routers.js';
 import {connectToDB} from "./db/connect.js";
 
 const app = express();
